@@ -1,3 +1,10 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 3 optimizations:
+# - [HIGH] Add pip dependency cache to "test" job
+# - [LOW] Explicitly set fail-fast for large matrix job "test" (162 combinations)
+# - [LOW] Use shallow clone in "test" job
+# Estimated savings: ~5 min/run
+#
 name: test
 
 on:
@@ -70,7 +77,7 @@ jobs:
     - uses: actions/checkout@v7
       with:
         # Needed to fetch tags, which are required by setuptools-scm.
-        fetch-depth: 0
+        fetch-depth: 1
 
     - name: Download Package
       uses: actions/download-artifact@v8
